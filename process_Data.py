@@ -3,8 +3,8 @@ import json
 import random
 from tqdm import tqdm
 
-FOLDER = "jigsaw"
-RULES_NAME = "hate_abuse_sample.json"
+FOLDER = "SWSR"
+RULES_NAME = "chinese_rules.json"
 EXEMPLARS_PER_RULE = 1
 
 HATESPEECH_LABELS = {"hatespeech", "offensive"}
@@ -15,7 +15,7 @@ TRAIN_FILE = os.path.join(FOLDER, TRAIN_NAME)
 RULE_FILE = os.path.join(FOLDER, RULES_NAME)
 RESULT_FILE = os.path.join(FOLDER,RESULT_NAME)
 
-with open(TRAIN_FILE) as f:
+with open(TRAIN_FILE, encoding="utf-8") as f:
     train_data = json.load(f)
 
 sentence_to_label = {}
@@ -28,7 +28,7 @@ for datapoint in train_data:
     sentence_to_label[sentence.lower()] = label
     labels.add(label)
 
-with open(RULE_FILE) as f:
+with open(RULE_FILE, encoding="utf-8") as f:
     rules = json.load(f)
 
 print(len(rules))
@@ -53,5 +53,5 @@ for rule in tqdm(rules):
 
 print(len(rule_to_exemplars))
 
-with open(RESULT_FILE, "w+") as f:
-    json.dump(rule_to_exemplars,f)
+with open(RESULT_FILE, "w+", encoding="utf-8") as f:
+    json.dump(rule_to_exemplars,f, ensure_ascii=False)
