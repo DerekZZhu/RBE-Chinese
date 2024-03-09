@@ -3,7 +3,7 @@ import json
 import random
 from tqdm import tqdm
 
-FOLDER = "SWSR"
+FOLDER = "SWSR-CORE"
 RULES_NAME = "chinese_rules.json"
 EXEMPLARS_PER_RULE = 1
 
